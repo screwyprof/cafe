@@ -18,7 +18,7 @@ func (r *tabRepo) ByID(ID string) (entity.Tab, error) {
 		return u, nil
 	}
 
-	return entity.Tab{}, fmt.Errorf("tab %d is not found", ID)
+	return entity.Tab{}, fmt.Errorf("tab %q is not found", ID)
 }
 
 func (r *tabRepo) Store(t entity.Tab) error {
