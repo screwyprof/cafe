@@ -1,9 +1,9 @@
 package entity
 
-// Waiters manages orders.
+// Waiter manages orders.
 type Waiter struct{}
 
-// OpenTab - Opens a new tab and assigns it to the table
+// OpenTab opens a new tab and assigns it to the table
 func (w Waiter) OpenTab(ID string, tableNumber uint8) Tab {
 
 	tab := Tab{
