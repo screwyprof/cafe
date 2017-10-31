@@ -1,8 +1,8 @@
 package inmemory
 
 import (
-	"github.com/screwyprof/cafe/entity"
 	"fmt"
+	"github.com/screwyprof/cafe/entity"
 )
 
 type tabRepo struct {

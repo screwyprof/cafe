@@ -1,8 +1,8 @@
 package command
 
 import (
-	"github.com/screwyprof/cafe/entity"
 	"errors"
+	"github.com/screwyprof/cafe/entity"
 	"reflect"
 	"strings"
 	"testing"

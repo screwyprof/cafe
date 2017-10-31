@@ -4,13 +4,13 @@ import (
 	"log"
 
 	"github.com/screwyprof/cafe/infra/cqrs"
-	"github.com/screwyprof/cafe/interface/repo/inmemory"
 	"github.com/screwyprof/cafe/interface/adaptor"
 	"github.com/screwyprof/cafe/interface/cli/handler"
+	"github.com/screwyprof/cafe/interface/repo/inmemory"
 
 	"github.com/screwyprof/cafe/usecase/tab"
-	"github.com/screwyprof/cafe/usecase/tab/query"
 	"github.com/screwyprof/cafe/usecase/tab/command"
+	"github.com/screwyprof/cafe/usecase/tab/query"
 )
 
 func main() {

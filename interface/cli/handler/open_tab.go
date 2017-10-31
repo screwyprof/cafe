@@ -1,9 +1,9 @@
 package handler
 
 import (
+	"github.com/screwyprof/cafe/entity"
 	"github.com/screwyprof/cafe/usecase/intf"
 	"github.com/screwyprof/cafe/usecase/tab/query"
-	"github.com/screwyprof/cafe/entity"
 )
 
 type waiterService interface {

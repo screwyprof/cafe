@@ -1,8 +1,8 @@
 package query
 
 import (
-	"github.com/screwyprof/cafe/entity"
 	"fmt"
+	"github.com/screwyprof/cafe/entity"
 	"github.com/screwyprof/cafe/usecase/intf"
 )
 
