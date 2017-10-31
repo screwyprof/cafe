@@ -41,7 +41,6 @@ func (h *ShowMenuHandler) Handle(q intf.Query, result interface{}) error {
 	}
 
 	r.Items = items
-	result = r
 
 	return nil
 }
