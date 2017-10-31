@@ -11,20 +11,18 @@ type placeOrderRepository interface {
 	Store(entity.Tab) error
 }
 
+// PlaceOrderHandler stores orders.
 type PlaceOrderHandler struct {
 	repo placeOrderRepository
 }
 
+// NewPlaceOrderHandler creates a new instance of PlaceOrderHandler.
 func NewPlaceOrderHandler(r placeOrderRepository) PlaceOrderHandler {
 	return PlaceOrderHandler{repo: r}
 }
 
-// Handle - handles the given command
-//
-// tab.ReceiveOrder(tab.ID, items)
-// pre condition - client has taken a seat at the table
-// and got a tab id
-// tab.OpenTab(tabID, tableNumber) tab
+// Handle handles the given command.
+// Stores the given order.
 func (h PlaceOrderHandler) Handle(cmd intf.Command) error {
 
 	c := cmd.(PlaceOrder)

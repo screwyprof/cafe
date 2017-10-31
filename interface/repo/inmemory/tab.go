@@ -5,15 +5,18 @@ import (
 	"github.com/screwyprof/cafe/entity"
 )
 
-type tabRepo struct {
+// TabRepo stores/retrieves tabs.
+type TabRepo struct {
 	tabs map[string]entity.Tab
 }
 
-func NewTabRepo() *tabRepo {
-	return &tabRepo{tabs: make(map[string]entity.Tab)}
+// NewTabRepo returns a new instance of TabRepo.
+func NewTabRepo() *TabRepo {
+	return &TabRepo{tabs: make(map[string]entity.Tab)}
 }
 
-func (r *tabRepo) ByID(ID string) (entity.Tab, error) {
+// ByID retrieves a Tab by its ID.
+func (r *TabRepo) ByID(ID string) (entity.Tab, error) {
 	if u, ok := r.tabs[ID]; ok {
 		return u, nil
 	}
@@ -21,7 +24,8 @@ func (r *tabRepo) ByID(ID string) (entity.Tab, error) {
 	return entity.Tab{}, fmt.Errorf("tab %q is not found", ID)
 }
 
-func (r *tabRepo) Store(t entity.Tab) error {
+// Store stores the given Tab.
+func (r *TabRepo) Store(t entity.Tab) error {
 	r.tabs[t.ID] = t
 	return nil
 }

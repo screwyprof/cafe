@@ -1,5 +1,6 @@
 package entity
 
+// Waiters manages orders.
 type Waiter struct{}
 
 // OpenTab - Opens a new tab and assigns it to the table

@@ -4,10 +4,12 @@ import (
 	"github.com/screwyprof/cafe/entity"
 )
 
+// MenuRepo stores/retrieves menu items.
 type MenuRepo struct {
 	menu map[uint8]entity.OrderedItem
 }
 
+// NewMenuRepo returns a new instance of MenuRepo.
 func NewMenuRepo() *MenuRepo {
 	return &MenuRepo{
 		menu: map[uint8]entity.OrderedItem{
@@ -25,6 +27,7 @@ func NewMenuRepo() *MenuRepo {
 	}
 }
 
+// All retrieves all menu items.
 func (r *MenuRepo) All() map[uint8]entity.OrderedItem {
 	return r.menu
 }

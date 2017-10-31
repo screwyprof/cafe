@@ -11,20 +11,24 @@ type waiterService interface {
 	PlaceOrder(ID string, items []entity.OrderedItem) error
 }
 
+// Waiter manages orders.
 type Waiter struct {
 	w waiterService
 	m intf.QueryHandler
 }
 
+// NewWaiter creates a new instance of Waiter
 func NewWaiter(w waiterService, m intf.QueryHandler) Waiter {
 	return Waiter{w: w, m: m}
 }
 
+// OpenTab opens a new Tab.
 func (h Waiter) OpenTab(ID string, tableNumber uint8) error {
 	return h.w.OpenTab(ID, tableNumber)
 }
 
-func (h Waiter) PlaceOrder(ID string, orderedItems []uint8) error {
+// PlaceOrder places order with the given orderedItems for the given TabID.
+func (h Waiter) PlaceOrder(TabID string, orderedItems []uint8) error {
 
 	menu := &query.ShowMenuResult{}
 	h.m.Handle(nil, menu)
@@ -43,5 +47,5 @@ func (h Waiter) PlaceOrder(ID string, orderedItems []uint8) error {
 		items = append(items, item)
 	}
 
-	return h.w.PlaceOrder(ID, items)
+	return h.w.PlaceOrder(TabID, items)
 }

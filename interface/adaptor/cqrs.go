@@ -5,6 +5,7 @@ import (
 	"github.com/screwyprof/cafe/usecase/intf"
 )
 
+// ToDomain makes cqrs.Handler compatible with domain.CommandHandler.
 func ToDomain(h cqrs.Handler) intf.CommandHandler {
 	return domainAdaptor{h: h}
 }
@@ -17,6 +18,7 @@ func (a domainAdaptor) Handle(c intf.Command) error {
 	return a.h.Handle(c.(cqrs.Command))
 }
 
+// FromDomain makes domain.CommandHandler compatible with cqrs.Handler.
 func FromDomain(h intf.CommandHandler) cqrs.Handler {
 	return infraAdapter{h: h}
 }

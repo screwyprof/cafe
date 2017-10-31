@@ -6,18 +6,22 @@ import (
 	"github.com/screwyprof/cafe/usecase/tab/command"
 )
 
+// Aggregate a facade to Tab.
 type Aggregate struct {
 	commandBus intf.CommandHandler
 }
 
+// NewUseCase creates a new instance of Aggregate.
 func NewUseCase(bus intf.CommandHandler) Aggregate {
 	return Aggregate{commandBus: bus}
 }
 
+// OpenTab opens a new Tab for the given table.
 func (a Aggregate) OpenTab(ID string, tableNumber uint8) error {
 	return a.commandBus.Handle(command.OpenTab{ID: ID, TableNumber: tableNumber})
 }
 
+// PlaceOrder places a new order.
 func (a Aggregate) PlaceOrder(ID string, items []entity.OrderedItem) error {
 	return a.commandBus.Handle(command.PlaceOrder{ID: ID, Items: items})
 }

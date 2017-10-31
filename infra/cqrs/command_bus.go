@@ -2,25 +2,30 @@ package cqrs
 
 import "fmt"
 
+// Command defines command pattern interface.
 type Command interface {
 	CommandID() string
 }
 
+// Handler defines command handler pattern interface.
 type Handler interface {
 	Handle(Command) error
 }
 
-type compositeHandler struct {
+// CompositeHandler a command bus.
+type CompositeHandler struct {
 	handlers map[string]Handler
 }
 
-func NewCompositeHandler() *compositeHandler {
-	return &compositeHandler{
+// NewCompositeHandler creates a new instance of CompositeHandler.
+func NewCompositeHandler() *CompositeHandler {
+	return &CompositeHandler{
 		handlers: make(map[string]Handler),
 	}
 }
 
-func (ch *compositeHandler) Handle(c Command) error {
+// Handle dispatches the given Command to its appropriate Handler and handles it.
+func (ch *CompositeHandler) Handle(c Command) error {
 
 	h, err := ch.resolveHandler(c.CommandID())
 	if err != nil {
@@ -30,7 +35,7 @@ func (ch *compositeHandler) Handle(c Command) error {
 	return h.Handle(c)
 }
 
-func (ch *compositeHandler) resolveHandler(commandID string) (Handler, error) {
+func (ch *CompositeHandler) resolveHandler(commandID string) (Handler, error) {
 
 	h, ok := ch.handlers[commandID]
 	if !ok {
@@ -40,7 +45,8 @@ func (ch *compositeHandler) resolveHandler(commandID string) (Handler, error) {
 	return h, nil
 }
 
-func (ch *compositeHandler) RegisterHandler(commandID string, h Handler) *compositeHandler {
+// RegisterHandler registers a Handler for the given CommandID.
+func (ch *CompositeHandler) RegisterHandler(commandID string, h Handler) *CompositeHandler {
 	ch.handlers[commandID] = h
 	return ch
 }

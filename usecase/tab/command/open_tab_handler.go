@@ -9,14 +9,18 @@ type openTabRepository interface {
 	Store(entity.Tab) error
 }
 
+// OpenTabHandler creates a new Tab.
 type OpenTabHandler struct {
 	repo openTabRepository
 }
 
+// NewOpenTabHandler creates a new instance of OpenTabHandler.
 func NewOpenTabHandler(repo openTabRepository) *OpenTabHandler {
 	return &OpenTabHandler{repo: repo}
 }
 
+// Handle handles the given command.
+// Creates a new Tab.
 func (h *OpenTabHandler) Handle(cmd intf.Command) error {
 
 	c := cmd.(OpenTab)
