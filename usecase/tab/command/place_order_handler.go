@@ -25,13 +25,32 @@ func NewPlaceOrderHandler(r placeOrderRepository) PlaceOrderHandler {
 // Stores the given order.
 func (h PlaceOrderHandler) Handle(cmd intf.Command) error {
 
-	c := cmd.(PlaceOrder)
+	c, ok := cmd.(PlaceOrder)
+	if !ok {
+		return fmt.Errorf("invalid command %v given", cmd)
+	}
 
 	tab, err := h.repo.ByID(c.ID)
 	if err != nil {
 		return fmt.Errorf("tab %q is not opened", c.ID)
 	}
-	tab.Items = c.Items
+
+	var (
+		item entity.Item
+	)
+
+	for _, el := range c.Items {
+		item = entity.Item{
+			MenuNumber:  el.MenuNumber,
+			Description: el.Description,
+			Price:       el.Price,
+			Available:   el.Available,
+		}
+
+		if err := tab.Add(item); err != nil {
+			return err
+		}
+	}
 
 	return h.repo.Store(tab)
 }

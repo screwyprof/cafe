@@ -22,14 +22,14 @@ func main() {
 	h.RegisterHandler("PlaceOrder", adaptor.FromDomain(command.NewPlaceOrderHandler(repo)))
 
 	showMenuQueryHandler := query.NewShowMenuHandler(inmemory.NewMenuRepo())
-	w := handler.NewWaiter(tab.NewUseCase(adaptor.ToDomain(h)), showMenuQueryHandler)
+	w := handler.NewWaiter(tab.NewInteractor(adaptor.ToDomain(h)), showMenuQueryHandler)
 
 	if err := w.OpenTab("tab777", 7); err != nil {
 		log.Fatal(err)
 		return
 	}
 
-	if err := w.PlaceOrder("tab777", []uint8{1, 2, 3}); err != nil {
+	if err := w.PlaceOrder("tab777", []uint8{1, 2}); err != nil {
 		log.Fatal(err)
 		return
 	}

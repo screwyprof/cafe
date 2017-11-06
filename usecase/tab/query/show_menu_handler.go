@@ -7,12 +7,12 @@ import (
 )
 
 type showMenuRepository interface {
-	All() map[uint8]entity.OrderedItem
+	All() map[uint8]entity.Item
 }
 
 // ShowMenuHandler retrieves menu items.
 type ShowMenuHandler struct {
-	// TODO: move interfaces to domain repo entity.UserRepository
+	// TODO: move interfaces to domain repo entity.showMenuRepository
 	repo showMenuRepository
 }
 

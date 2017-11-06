@@ -36,7 +36,7 @@ func TestPlaceOrder_ValidCommandGiven_OrderPlaced(t *testing.T) {
 
 	expected := entity.Tab{
 		ID: "Client 1",
-		Items: []entity.OrderedItem{
+		Items: []entity.Item{
 			{
 				MenuNumber:  1,
 				Description: "pizza",
@@ -51,7 +51,7 @@ func TestPlaceOrder_ValidCommandGiven_OrderPlaced(t *testing.T) {
 
 	c := PlaceOrder{
 		ID: "Client 1",
-		Items: []entity.OrderedItem{
+		Items: []entity.Item{
 			{
 				MenuNumber:  1,
 				Description: "pizza",
@@ -81,7 +81,7 @@ func TestPlaceOrder_TabIsNotOpened_OrderNotPlaced(t *testing.T) {
 
 	c := PlaceOrder{
 		ID: "Client 1",
-		Items: []entity.OrderedItem{
+		Items: []entity.Item{
 			{
 				MenuNumber:  1,
 				Description: "pizza",

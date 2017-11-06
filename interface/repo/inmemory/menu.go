@@ -6,13 +6,13 @@ import (
 
 // MenuRepo stores/retrieves menu items.
 type MenuRepo struct {
-	menu map[uint8]entity.OrderedItem
+	menu map[uint8]entity.Item
 }
 
 // NewMenuRepo returns a new instance of MenuRepo.
 func NewMenuRepo() *MenuRepo {
 	return &MenuRepo{
-		menu: map[uint8]entity.OrderedItem{
+		menu: map[uint8]entity.Item{
 			1: {
 				MenuNumber:  1,
 				Description: "pizza",
@@ -28,6 +28,6 @@ func NewMenuRepo() *MenuRepo {
 }
 
 // All retrieves all menu items.
-func (r *MenuRepo) All() map[uint8]entity.OrderedItem {
+func (r *MenuRepo) All() map[uint8]entity.Item {
 	return r.menu
 }

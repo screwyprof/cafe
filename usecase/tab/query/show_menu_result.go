@@ -2,7 +2,7 @@ package query
 
 // MenuItem is a menu item.
 type MenuItem struct {
-	Number      int
+	Number      uint8
 	Description string
 	Price       float64
 }

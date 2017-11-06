@@ -1,8 +1,41 @@
 package entity
 
+import (
+	"fmt"
+)
+
 // Tab represents a bill.
 type Tab struct {
 	ID          string
 	TableNumber uint8
-	Items       []OrderedItem
+	Items       []Item
+}
+
+// Item represents an ordered menu item.
+type Item struct {
+	MenuNumber  uint8
+	Description string
+	Price       float64
+	Available   bool
+}
+
+func (t *Tab) Add(item Item) error {
+
+	if !item.Available {
+		return fmt.Errorf("cannot add unavailable items to order: %v", item)
+	}
+
+	if t.TotalPrice()+item.Price > 250.00 {
+		return fmt.Errorf("a tab may not exceed a total value of $150.00")
+	}
+	t.Items = append(t.Items, item)
+	return nil
+}
+
+func (t *Tab) TotalPrice() float64 {
+	var sum float64
+	for i := range t.Items {
+		sum += t.Items[i].Price
+	}
+	return sum
 }
