@@ -22,11 +22,6 @@ func NewOpenTabHandler(repo openTabRepository) *OpenTabHandler {
 // Handle handles the given command.
 // Creates a new Tab.
 func (h *OpenTabHandler) Handle(cmd intf.Command) error {
-
 	c := cmd.(OpenTab)
-
-	w := entity.Waiter{}
-	tab := w.OpenTab(c.ID, c.TableNumber)
-
-	return h.repo.Store(tab)
+	return h.repo.Store(entity.OpenTab(c.ID, c.TableNumber))
 }
